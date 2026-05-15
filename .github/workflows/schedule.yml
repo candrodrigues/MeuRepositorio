@@ -1,0 +1,31 @@
+name: Consulta Multas Monterrey
+
+on:
+  # Roda automaticamente todo dia às 8h (horário de Brasília = 11h UTC)
+  schedule:
+    - cron: "0 11 * * *"
+
+  # Permite rodar manualmente pelo GitHub com um clique
+  workflow_dispatch:
+
+jobs:
+  consultar-multas:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependências
+        run: pip install requests
+
+      - name: Rodar script de consulta de multas
+        env:
+          TOKEN_MOTTU:    ${{ secrets.TOKEN_MOTTU }}
+          PIPEFY_TOKEN:   ${{ secrets.PIPEFY_TOKEN }}
+        run: python motos_regiao_monterrey.py
