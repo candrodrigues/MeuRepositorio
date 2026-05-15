@@ -15,8 +15,7 @@ PIPEFY_RESPONSAVEL = "Caio Andrade Rodrigues"
 REGION_ID = "7d5f8432-ad96-4684-90f0-0ae08b4b8012"
 
 # Ajuste para testes — use None para rodar todas as placas
-LIMITE_PLACAS  = 10
-PAUSA_SEGUNDOS = 1
+PAUSA_SEGUNDOS = 2
 
 # ==================================================
 
