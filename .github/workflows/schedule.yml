@@ -1,9 +1,9 @@
 name: Consulta Multas Monterrey
 
 on:
-  # Roda automaticamente todo dia às 8h (horário de Brasília = 11h UTC)
+  # Roda automaticamente todo dia às 10h (horário de Brasília = 13h UTC)
   schedule:
-    - cron: "0 20 * * *"
+    - cron: "0 13 * * *"
 
   # Permite rodar manualmente pelo GitHub com um clique
   workflow_dispatch:
@@ -22,10 +22,16 @@ jobs:
           python-version: "3.11"
 
       - name: Instalar dependências
-        run: pip install requests
+        run: pip install requests google-cloud-bigquery
+
+      - name: Configurar credenciais do Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
       - name: Rodar script de consulta de multas
         env:
-          TOKEN_MOTTU:    ${{ secrets.TOKEN_MOTTU }}
+          MOTTU_USERNAME: ${{ secrets.MOTTU_USERNAME }}
+          MOTTU_PASSWORD: ${{ secrets.MOTTU_PASSWORD }}
           PIPEFY_TOKEN:   ${{ secrets.PIPEFY_TOKEN }}
         run: python motos_regiao_monterrey.py
