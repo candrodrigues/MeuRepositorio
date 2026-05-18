@@ -1,9 +1,9 @@
 name: Consulta Multas Monterrey
 
 on:
-  # Roda automaticamente todo dia às 10h (horário de Brasília = 13h UTC)
+  # Roda automaticamente todo dia às 10h (horário de Brasília = 21h UTC)
   schedule:
-    - cron: "0 13 * * *"
+    - cron: "0 0 * * *"
 
   # Permite rodar manualmente pelo GitHub com um clique
   workflow_dispatch:
