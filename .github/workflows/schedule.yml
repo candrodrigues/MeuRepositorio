@@ -24,11 +24,6 @@ jobs:
       - name: Instalar dependências
         run: pip install requests google-cloud-bigquery
 
-      - name: Configurar credenciais do Google Cloud
-        uses: google-github-actions/auth@v1
-        with:
-          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
-
       - name: Rodar script de consulta de multas
         env:
           MOTTU_USERNAME: ${{ secrets.MOTTU_USERNAME }}
